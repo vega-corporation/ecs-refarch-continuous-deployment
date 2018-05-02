@@ -99,6 +99,44 @@ Resources:
           IpProtocol: -1
       VpcId: !Ref VpcId
 
+  BaseSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Condition: EC2
+    Properties:
+      GroupDescription: !Sub ${AWS::StackName}-base
+      SecurityGroupIngress:
+        - CidrIp: "122.208.113.98/32"
+          Description: "tokyo gw"
+          IpProtocol: "TCP"
+          FromPort: 22
+          ToPort: 22
+        - CidrIp: "122.208.113.98/32"
+          Description: "tokyo gw"
+          IpProtocol: "ICMP"
+          FromPort: 8
+          ToPort: -1
+        - CidrIp: "122.217.102.122/32"
+          Description: "fukuoka gw"
+          IpProtocol: "TCP"
+          FromPort: 22
+          ToPort: 22
+        - CidrIp: "122.217.102.122/32"
+          Description: "fukuoka gw"
+          IpProtocol: "ICMP"
+          FromPort: 8
+          ToPort: -1
+        - CidrIp: "122.218.24.161/32"
+          Description: "fukuoka gw"
+          IpProtocol: "TCP"
+          FromPort: 22
+          ToPort: 22
+        - CidrIp: "122.218.24.161/32"
+          Description: "fukuoka gw"
+          IpProtocol: "ICMP"
+          FromPort: 8
+          ToPort: -1
+      VpcId: !Ref VpcId
+
   Cluster:
     Type: AWS::ECS::Cluster
     Properties:
@@ -165,6 +203,7 @@ Resources:
       IamInstanceProfile: !Ref InstanceProfile
       SecurityGroups:
         - !Ref SecurityGroup
+        - !Ref BaseSecurityGroup
       UserData:
         "Fn::Base64": !Sub |
           #!/bin/bash

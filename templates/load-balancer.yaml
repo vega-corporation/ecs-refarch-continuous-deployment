@@ -27,10 +27,36 @@ Resources:
     Properties:
       GroupDescription: !Sub ${AWS::StackName}-alb
       SecurityGroupIngress:
-        - CidrIp: "0.0.0.0/0"
+        - CidrIp: "122.208.113.98/32"
+          Description: "tokyo gw"
           IpProtocol: "TCP"
           FromPort: 80
           ToPort: 80
+        - CidrIp: "122.208.113.98/32"
+          Description: "tokyo gw"
+          IpProtocol: "TCP"
+          FromPort: 443
+          ToPort: 443
+        - CidrIp: "122.217.102.122/32"
+          Description: "fukuoka gw"
+          IpProtocol: "TCP"
+          FromPort: 80
+          ToPort: 80
+        - CidrIp: "122.217.102.122/32"
+          Description: "fukuoka gw"
+          IpProtocol: "TCP"
+          FromPort: 443
+          ToPort: 443
+        - CidrIp: "122.218.24.161/32"
+          Description: "fukuoka gw"
+          IpProtocol: "TCP"
+          FromPort: 80
+          ToPort: 80
+        - CidrIp: "122.218.24.161/32"
+          Description: "fukuoka gw"
+          IpProtocol: "TCP"
+          FromPort: 443
+          ToPort: 443
       VpcId: !Ref VpcId
 
   LoadBalancer:
