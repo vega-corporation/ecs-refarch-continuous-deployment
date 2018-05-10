@@ -119,8 +119,10 @@ Resources:
       Parameters:
         Name: !Ref AWS::StackName
         VpcCIDR: 10.11.0.0/16
-        Subnet1CIDR: 10.11.101.0/24
-        Subnet2CIDR: 10.11.102.0/24
+        PublicSubnet1CIDR: 10.11.0.0/24
+        PublicSubnet2CIDR: 10.11.2.0/24
+        PrivateSubnet1CIDR: 10.11.64.0/24
+        PrivateSubnet2CIDR: 10.11.66.0/24
 
   Service:
     Type: AWS::CloudFormation::Stack
